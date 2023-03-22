@@ -18,6 +18,8 @@ npm install exceljs multer
 Create a new controller that will handle the file upload and data import:
 typescript
 Copy code
+
+```ts
 import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as exceljs from 'exceljs';
@@ -44,6 +46,7 @@ export class ImportController {
     console.log(data);
   }
 }
+```
 In this example, we're using the FileInterceptor middleware to handle file uploads, and the exceljs library to read the contents of the Excel file. The importData method loads the workbook from the uploaded file buffer, gets the first worksheet, and iterates over its rows to extract the data.
 
 You can customize the map function to extract the data based on your Excel file format.
@@ -59,10 +62,14 @@ When dealing with large data import from Excel files, you may run into performan
 
 Install the required packages:
 Copy code
+```ts
 npm install exceljs multer stream
+
+```
 Create a new controller that will handle the file upload and data import:
 typescript
 Copy code
+```ts
 import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as exceljs from 'exceljs';
@@ -93,6 +100,7 @@ export class ImportController {
     console.log(data);
   }
 }
+```
 In this example, we're using a stream.PassThrough() object to read the uploaded file buffer in chunks, instead of loading the entire file into memory. This approach can help you handle large data sets more efficiently.
 
 Once you have the workbook, you can get the first worksheet, iterate over its rows using a for...of loop, and extract the data as required.
@@ -108,10 +116,13 @@ Another solution to handle large data import from Excel files in NestJS is to us
 
 Install the required packages:
 Copy code
+```
 npm install node-xlsx multer
+```
 Create a new controller that will handle the file upload and data import:
 typescript
 Copy code
+```ts
 import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as xlsx from 'node-xlsx';
@@ -136,6 +147,7 @@ export class ImportController {
     console.log(data);
   }
 }
+```
 In this example, we're using the node-xlsx library to parse the uploaded file buffer and extract the data. The parse method returns an array of worksheets, so we're getting the first worksheet by accessing the 0 index.
 
 We're using the slice method to remove the header row from the array of rows, and then we're iterating over the remaining rows using the map function to extract the data.
@@ -151,10 +163,13 @@ Another solution to handle large data import from Excel files in NestJS is to us
 
 Install the required packages:
 Copy code
+```
 npm install xlsx-populate multer
+```
 Create a new controller that will handle the file upload and data import:
 typescript
 Copy code
+```ts
 import { Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as xlsxPopulate from 'xlsx-populate';
@@ -180,6 +195,7 @@ export class ImportController {
     console.log(data);
   }
 }
+```
 In this example, we're using the xlsx-populate library to parse the uploaded file buffer and extract the data. The fromDataAsync method returns a promise that resolves to a Workbook object, which we can use to get the first worksheet.
 
 We're using the usedRange method to get the range of cells that have data in the worksheet, and then we're calling the value method to get an array of arrays containing the data.
