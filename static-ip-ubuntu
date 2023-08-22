@@ -1,0 +1,22 @@
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    eth0:
+      dhcp4: no
+      addresses: [172.16.0.71/16]
+      routes:
+        - to: default
+          via: 172.16.0.1
+      nameservers:
+        addresses: [8.8.8.8,8.8.4.4]
+  version: 2
+  renderer: networkd
+
+
+sudo netplan apply
+
+https://ubuntu.com/server/docs/network-configuration
+
+ip address show lo
+
+00-installer-config.yaml
