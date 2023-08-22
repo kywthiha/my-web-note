@@ -20,3 +20,5 @@ https://ubuntu.com/server/docs/network-configuration
 ip address show lo
 
 00-installer-config.yaml
+
+https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/
